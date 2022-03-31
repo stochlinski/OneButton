@@ -26,6 +26,19 @@
 
 #include "Arduino.h"
 
+
+#ifndef DEBOUNCE_TICKS
+#define DEBOUNCE_TICKS 50
+#endif
+
+#ifndef CLICK_TICKS
+#define CLICK_TICKS 400
+#endif
+
+#ifndef PRESS_TICKS
+#define PRESS_TICKS 800
+#endif
+  
 // ----- Callback function types -----
 
 extern "C" {
@@ -49,21 +62,6 @@ public:
   OneButton(const int pin, const boolean activeLow = true, const bool pullupActive = true);
 
   // ----- Set runtime parameters -----
-
-  /**
-   * set # millisec after safe click is assumed.
-   */
-  void setDebounceTicks(const int ticks);
-
-  /**
-   * set # millisec after single click is assumed.
-   */
-  void setClickTicks(const int ticks);
-
-  /**
-   * set # millisec after press is assumed.
-   */
-  void setPressTicks(const int ticks);
 
   /**
    * Attach an event to be called when a single click is detected.
@@ -150,10 +148,7 @@ public:
 
 private:
   int _pin;                         // hardware pin number.
-  unsigned int _debounceTicks = 50; // number of ticks for debounce times.
-  unsigned int _clickTicks = 400;   // number of msecs before a click is detected.
-  unsigned int _pressTicks = 800;   // number of msecs before a long button press is detected
-
+  
   int _buttonPressed;
 
   // These variables will hold functions acting as event source.

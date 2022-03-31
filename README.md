@@ -124,11 +124,14 @@ the following functions to change the timing.
 click event is not attached, the library will assume a valid single click after one click duration,
 otherwise it must wait for the double click timeout to pass.
 
-| Function                | Default    | Description                                                   |
-| ----------------------- | ---------- | ------------------------------------------------------------- |
-| `setDebounceTicks(int)` | `50 msec`  | Period of time in which to ignore additional level changes.   |
-| `setClickTicks(int)`    | `500 msec` | Timeout used to distinguish single clicks from double clicks. |
-| `setPressTicks(int)`    | `800 msec` | Duration to hold a button to trigger a long press.            |
+Use defined values to change these values:
+
+```CPP
+
+#define DEBOUNCE_TICKS 50
+#define CLICK_TICKS 400
+#define PRESS_TICKS 800
+```
 
 You may change these default values but be aware that when you specify too short times
 it is hard to click twice or you will create a press instead of a click.
