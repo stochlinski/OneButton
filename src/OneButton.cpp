@@ -31,22 +31,12 @@ OneButton::OneButton()
 /**
  * Initialize the OneButton library.
  * @param pin The pin to be used for input from a momentary button.
- * @param activeLow Set to true when the input level is LOW when the button is pressed, Default is true.
  * @param pullupActive Activate the internal pullup when available. Default is true.
  */
-OneButton::OneButton(const int pin, const boolean activeLow, const bool pullupActive)
+OneButton::OneButton(const int pin, const bool pullupActive)
 {
   // OneButton();
   _pin = pin;
-
-  if (activeLow) {
-    // the button connects the input pin to GND when pressed.
-    _buttonPressed = LOW;
-
-  } else {
-    // the button connects the input pin to VCC when pressed.
-    _buttonPressed = HIGH;
-  } // if
 
   if (pullupActive) {
     // use the given pin as input and activate internal PULLUP resistor.
@@ -176,7 +166,7 @@ int OneButton::getNumberClicks(void)
 void OneButton::tick(void)
 {
   if (_pin >= 0) {
-    tick(digitalRead(_pin) == _buttonPressed);
+    tick(digitalRead(_pin) == BUTTON_PRESSED);
   }
 }
 

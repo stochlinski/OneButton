@@ -38,6 +38,10 @@
 #ifndef PRESS_TICKS
 #define PRESS_TICKS 800
 #endif
+
+#ifndef BUTTON_PRESSED
+#define BUTTON_PRESSED HIGH
+#endif
   
 // ----- Callback function types -----
 
@@ -59,7 +63,7 @@ public:
    * @param activeLow Set to true when the input level is LOW when the button is pressed, Default is true.
    * @param pullupActive Activate the internal pullup when available. Default is true.
    */
-  OneButton(const int pin, const boolean activeLow = true, const bool pullupActive = true);
+  OneButton(const int pin, const bool pullupActive = true);
 
   // ----- Set runtime parameters -----
 
@@ -148,8 +152,6 @@ public:
 
 private:
   int _pin;                         // hardware pin number.
-  
-  int _buttonPressed;
 
   // These variables will hold functions acting as event source.
   callbackFunction _clickFunc = NULL;
