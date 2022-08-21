@@ -183,7 +183,7 @@ private:
   // tick function is called.
 
   // define FiniteStateMachine
-  enum stateMachine_t : int {
+  enum stateMachine_t : uint8_t {
     OCS_INIT = 0,
     OCS_DOWN = 1,
     OCS_UP = 2,
@@ -202,8 +202,8 @@ private:
   stateMachine_t _lastState = OCS_INIT; // used for debouncing
 
   unsigned long _startTime; // start of current input change to checking debouncing
-  int _nClicks;             // count the number of clicks with this variable
-  int _maxClicks = 1;       // max number (1, 2, multi=3) of clicks of interest by registration of event functions.
+  uint8_t _nClicks;             // count the number of clicks with this variable
+  uint8_t _maxClicks = 1;       // max number (1, 2, multi=3) of clicks of interest by registration of event functions.
 };
 
 #endif
